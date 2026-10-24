@@ -1,0 +1,159 @@
+{
+  "brand": {
+    "name": "SwarGuard",
+    "tagline": "Hear the Threat. Trust the Evidence.",
+    "mission": "Empowering citizens with evidence-backed voice safety intelligence against digital-arrest scams, fake KYC calls, and coercion."
+  },
+  "nav": {
+    "overview": "Overview",
+    "analysis": "Live Call Analysis",
+    "evidence": "Threat Evidence",
+    "scenarios": "Scam Library",
+    "safeCheck": "Safe Call Check",
+    "language": "Language Guardian",
+    "insights": "Protection Insights",
+    "testLab": "Test Lab",
+    "privacy": "Privacy Centre",
+    "settings": "Settings",
+    "exitDemo": "Exit Demo",
+    "quickSearch": "Quick Search"
+  },
+  "status": {
+    "demoMode": "Demo Mode",
+    "connecting": "Connecting",
+    "analysisAvailable": "Analysis Available",
+    "unavailable": "Unavailable",
+    "sampleData": "Sample data",
+    "demoFixture": "Demo fixture"
+  },
+  "risk": {
+    "low": "Low Risk",
+    "medium": "Moderate Caution",
+    "high": "High Risk Detected",
+    "insufficient": "Insufficient Evidence",
+    "safeDisclaimer": "No significant warning signs found does not guarantee that a call is legitimate."
+  },
+  "actions": {
+    "analyseCall": "Analyse a Call",
+    "exploreScenarios": "Explore Demo Scenarios",
+    "tryInteractiveDemo": "Try Interactive Demo",
+    "enterSwarGuard": "Enter SwarGuard",
+    "runTest": "Run Test",
+    "runAllTests": "Run Full Suite",
+    "resetTests": "Reset Suite",
+    "clearSession": "Clear Demo Session",
+    "inspectEvidence": "Inspect Evidence",
+    "playAudio": "Play Audio",
+    "pauseAudio": "Pause Audio",
+    "seekToEvidence": "Jump to Audio",
+    "filter": "Filter",
+    "search": "Search",
+    "dismiss": "Dismiss",
+    "close": "Close",
+    "save": "Save Changes"
+  },
+  "categories": {
+    "authority_impersonation": "Authority Impersonation",
+    "threats": "Legal / Arrest Threats",
+    "artificial_urgency": "Artificial Urgency",
+    "isolation": "Call Isolation Demands",
+    "credential_requests": "Credential / OTP Requests",
+    "coercive_money_demands": "Coercive Payment Demands",
+    "suspicious_kyc_claims": "Suspicious KYC Claims",
+    "suspicious_parcel_claims": "Suspicious Parcel Claims"
+  },
+  "dashboard": {
+    "title": "Your voice safety, at a glance.",
+    "subtitle": "Analyse suspicious conversations. Understand the evidence. Choose a safer next step.",
+    "consoleTitle": "Live Protection Console",
+    "statAnalysed": "Calls Analysed (Session)",
+    "statHighRisk": "High-Risk Threats Detected",
+    "statGenuine": "Genuine Tests Completed",
+    "statStatus": "Active Engine Status",
+    "latestEvidence": "Latest Detected Evidence",
+    "recentActivity": "Recent Activity Timeline",
+    "noRecentCalls": "No calls analysed yet in this session. Select a scenario or upload audio above.",
+    "launchScenario": "Launch Scenario Test"
+  },
+  "analysis": {
+    "title": "Simulated Call Analysis",
+    "subtitle": "Inspect acoustic waveforms and verified linguistic threat markers in recorded voice conversations.",
+    "dropzoneTitle": "Drop suspicious call recording here",
+    "dropzoneSubtitle": "Supports WAV, MP3, M4A or OGG (Simulated call analysis only; processed in-browser)",
+    "browse": "Browse Files",
+    "selectScenario": "Or select a pre-recorded demo call:",
+    "fileDetails": "File Specifications",
+    "timelineHeading": "Acoustic Waveform & Detected Markers",
+    "transcriptHeading": "Synchronised Threat Timeline",
+    "transcriptLabel": "Fixture Transcript (Labelled Sample Data)",
+    "sourceNotice": "Analysis Source",
+    "evidenceCount": "Evidence Indicators Found",
+    "recommendedHeading": "Recommended Safe Next Step",
+    "privacyNotice": "Privacy note: Audio files are decoded locally in your browser session. Audio is not stored or transmitted without an active proxy.",
+    "userUploadNotice": "Analysis unavailable: connect an analysis service. You can still play and inspect the raw audio waveform locally."
+  },
+  "evidencePage": {
+    "title": "Threat Evidence Catalog",
+    "subtitle": "Inspect detected phrases, manipulation markers, risk levels, and legitimate alternative interpretations.",
+    "filterScenario": "Filter by Scenario",
+    "filterCategory": "Filter by Category",
+    "filterRisk": "Filter by Risk Level",
+    "drawerTitle": "Evidence Investigation",
+    "whyConcerning": "Why this phrase is concerning",
+    "alternativeInterp": "Legitimate alternative interpretations",
+    "actionAdvice": "Safe protocol advice"
+  },
+  "scenariosPage": {
+    "title": "Scam Manipulation Library",
+    "subtitle": "Comprehensive psychological and tactical breakdown of 6 prevalent telephonic voice scams in India.",
+    "howItBegins": "Initial Approach Vector",
+    "techniques": "Psychological Manipulation Techniques",
+    "warningSigns": "Key Audible Red Flags",
+    "fictionalSnippet": "Fictional Demonstration Dialogue",
+    "safeAction": "Verified Protective Protocol",
+    "tryButton": "Analyse This Scenario in Console"
+  },
+  "safeCheckPage": {
+    "title": "Safe Call Benchmark & Verification",
+    "subtitle": "Learn how routine, legitimate calls differ from coercive scam calls under systematic analysis.",
+    "benchmarkHeading": "Genuine Routine Call Simulation",
+    "explanationHeading": "Why this call did not trigger scam alerts",
+    "comparisonHeading": "Scam vs. Genuine Side-by-Side Comparison",
+    "comparisonEmpty": "Run both a scam scenario and a genuine scenario this session to view side-by-side comparative metrics."
+  },
+  "languagePage": {
+    "title": "Multilingual Language Guardian",
+    "subtitle": "Voice scam detection across English, Gujarati (ગુજરાતી), and Hindi (हिन्दी).",
+    "currentLanguage": "Current Active Language",
+    "translationDisclosure": "Static strings translation note: Regional strings are maintained in local dictionaries and require native-speaker review. Analysis-supplied translations will be explicitly marked.",
+    "testPhrases": "Common Coercive Phrases Across Dialects"
+  },
+  "insightsPage": {
+    "title": "Empirical Protection Insights",
+    "subtitle": "Session metrics, category distribution, and latency observations based solely on current session activity.",
+    "emptyNotice": "No session data recorded yet. Run scenarios or tests in the Test Lab to populate real empirical charts.",
+    "scamVsGenuine": "Outcomes: High-Risk Threats vs. Safe Checks",
+    "categoryDist": "Threat Distribution by Coercion Category",
+    "latencyChart": "Time-to-First-Warning Latency (seconds)",
+    "sampleSizeNote": "Preliminary session telemetry (n = {count}). No unverified claims or invented accuracy percentages."
+  },
+  "testLabPage": {
+    "title": "Verification Test Lab",
+    "subtitle": "Automated regression suite executing scenarios against pre-defined ground truth expectations.",
+    "runAll": "Execute Full Verification Suite",
+    "reset": "Reset Test Suite",
+    "status": "Test Status",
+    "sourceLabel": "Source: demo fixture replay",
+    "limitationsTitle": "Known Limitations & Engineering Disclosures"
+  },
+  "privacyPage": {
+    "title": "Privacy Architecture & Data Rights",
+    "subtitle": "Transparent documentation of what is processed, what is stored, and how your voice data is handled.",
+    "clearSessionButton": "Clear Demo Session Data",
+    "confirmClear": "Are you sure you want to clear all stored preferences and session results? This cannot be undone."
+  },
+  "settingsPage": {
+    "title": "Platform Settings",
+    "subtitle": "Customize playback speeds, warning notifications, accessibility, and interface language."
+  }
+}

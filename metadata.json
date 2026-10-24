@@ -1,0 +1,10 @@
+{
+  "name": "SwarGuard - AI Voice-Scam Detection & Call-Safety Platform",
+  "description": "Hear the Threat. Trust the Evidence. Multilingual voice-scam detection and call-safety platform protecting against digital-arrest scams, fake KYC calls, and coercion.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

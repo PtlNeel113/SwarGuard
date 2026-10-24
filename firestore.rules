@@ -1,0 +1,96 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net: Default-deny all undefined paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reusable Security Helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Validation for UserProfile
+    function isValidUserProfile(data, userId) {
+      return data.userId == userId &&
+        data.email is string && data.email.size() <= 200 &&
+        (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100)) &&
+        (!('preferredLanguage' in data) || (data.preferredLanguage in ['en', 'gu', 'hi']));
+    }
+
+    // Validation for CallAnalysisRecord
+    function isValidAnalysisRecord(data, userId) {
+      return data.userId == userId &&
+        data.overallRisk in ['low', 'medium', 'high', 'insufficient'] &&
+        data.status in ['waiting', 'analysing', 'complete', 'unavailable', 'error'] &&
+        data.source in ['demo-fixture', 'gemini', 'manual'] &&
+        (!('fileName' in data) || (data.fileName is string && data.fileName.size() <= 200));
+    }
+
+    // Validation for ChatMessage
+    function isValidChatMessage(data, userId) {
+      return data.userId == userId &&
+        data.role in ['user', 'model', 'system'] &&
+        data.content is string && data.content.size() <= 10000;
+    }
+
+    // Validation for TranscriptionRecord
+    function isValidTranscriptionRecord(data, userId) {
+      return data.userId == userId &&
+        data.transcriptText is string && data.transcriptText.size() <= 20000;
+    }
+
+    // User Profile Documents
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUserProfile(incoming(), userId);
+      allow update: if isOwner(userId) && isValidUserProfile(incoming(), userId) &&
+        incoming().userId == existing().userId;
+      allow delete: if isOwner(userId);
+
+      // Subcollection: Analysis Records
+      match /analysisRecords/{recordId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(recordId) && isValidAnalysisRecord(incoming(), userId);
+        allow update: if isOwner(userId) && isValidId(recordId) && isValidAnalysisRecord(incoming(), userId) &&
+          incoming().userId == existing().userId;
+        allow delete: if isOwner(userId) && isValidId(recordId);
+      }
+
+      // Subcollection: Chat Messages
+      match /chatMessages/{messageId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(messageId) && isValidChatMessage(incoming(), userId);
+        allow update: if isOwner(userId) && isValidId(messageId) && isValidChatMessage(incoming(), userId) &&
+          incoming().userId == existing().userId;
+        allow delete: if isOwner(userId) && isValidId(messageId);
+      }
+
+      // Subcollection: Transcriptions
+      match /transcriptions/{transcriptionId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(transcriptionId) && isValidTranscriptionRecord(incoming(), userId);
+        allow update: if isOwner(userId) && isValidId(transcriptionId) && isValidTranscriptionRecord(incoming(), userId) &&
+          incoming().userId == existing().userId;
+        allow delete: if isOwner(userId) && isValidId(transcriptionId);
+      }
+    }
+  }
+}

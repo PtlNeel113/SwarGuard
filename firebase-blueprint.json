@@ -1,0 +1,177 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with preferences and account information",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the user",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 100
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Profile picture URL"
+        },
+        "preferredLanguage": {
+          "type": "string",
+          "enum": ["en", "gu", "hi"],
+          "description": "Preferred language code"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Account creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Profile last updated timestamp"
+        }
+      },
+      "required": ["userId", "email", "createdAt"]
+    },
+    "CallAnalysisRecord": {
+      "title": "CallAnalysisRecord",
+      "description": "Persisted call analysis assessment result with risk markers",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "fileName": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "overallRisk": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "insufficient"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["waiting", "analysing", "complete", "unavailable", "error"]
+        },
+        "source": {
+          "type": "string",
+          "enum": ["demo-fixture", "gemini", "manual"]
+        },
+        "durationSec": {
+          "type": "number"
+        },
+        "warningLatencySec": {
+          "type": "number"
+        },
+        "evidenceCount": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "userId", "overallRisk", "status", "source", "createdAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Multi-turn Gemini chat conversation message",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "model", "system"]
+        },
+        "content": {
+          "type": "string",
+          "maxLength": 10000
+        },
+        "modelUsed": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "botRole": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "userId", "role", "content", "createdAt"]
+    },
+    "TranscriptionRecord": {
+      "title": "TranscriptionRecord",
+      "description": "Microphone audio transcription record produced by gemini-3.5-transcribe",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "audioDurationSec": {
+          "type": "number"
+        },
+        "transcriptText": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "modelUsed": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "userId", "transcriptText", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Private user profile documents"
+    },
+    "/users/{userId}/analysisRecords/{recordId}": {
+      "schema": {
+        "$ref": "#/entities/CallAnalysisRecord"
+      },
+      "description": "Saved call analysis results"
+    },
+    "/users/{userId}/chatMessages/{messageId}": {
+      "schema": {
+        "$ref": "#/entities/ChatMessage"
+      },
+      "description": "User conversation history with Gemini chatbot"
+    },
+    "/users/{userId}/transcriptions/{transcriptionId}": {
+      "schema": {
+        "$ref": "#/entities/TranscriptionRecord"
+      },
+      "description": "User microphone audio transcription history"
+    }
+  }
+}
